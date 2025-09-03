@@ -4,8 +4,8 @@ My name is Dianne Cao, I'm a undergrad majoring in 4B + 6-4, it's nice to meet y
 
 Some fun facts about me:
 1. I love Hollowknight (play Silksong!).
-2. I recently got into 3D modeling.
-3. I was bitten by a shark on my left arm.
+2. I recently got into 3D modeling (see below).
+3. I was bitten by a shark on my left arm (ask me about it).
 
 ![picture of a 3D model I made](/3dmodel.jpg)
 
