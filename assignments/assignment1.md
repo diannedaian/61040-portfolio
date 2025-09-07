@@ -12,19 +12,19 @@
 9. **Money management for students** – I always find it hard to keep track of my spending. A lot of times I just use my card and don’t really know how much I’ve spent until I check my bank account at the end of the month. I think it would be helpful to have a clear, simple tool to manage budgets or savings without being too complicated or intimidating.
 10. **Bike life** – I just bought a bike recently and I’ve started riding around campus and to nearby places. It’s fun, but I don’t really log my rides or know how much distance I cover. Sometimes I also forget to check on basic maintenance like pumping tires. I think it would be nice to have an app that reminds me about upkeep and lets me see my progress over time.
 
-## Focus on Three
-### Anime
+### Focus on Three
+#### Anime
 Anime is something I engage with every week, and it has become a routine part of how I relax and connect with friends. For me, the challenge isn’t just watching shows but keeping track of them across languages and platforms. Sometimes I watch in Chinese while my friends watch in English, and this creates a disconnect when we want to share episodes or recommend new shows. I’ve also noticed that I easily lose track of where I left off in a series, especially when I am following multiple shows at once. Because anime discussions are often very social, I feel there is a real opportunity for a tool that not only tracks my watch history but also translates titles and episode numbers across languages so that I can connect more easily with my friends. It could even suggest what to watch next based on overlap in our histories. This domain stands out to me because anime is not just entertainment, it is part of my identity and my social circle, and solving this problem would make it much easier to share that part of myself with others.
 
-### Jewelry Documentation
+#### Jewelry Documentation
 My jewelry collection has grown over the years, but I don’t have a clear overview of what I own. Some pieces are stored in boxes, others in drawers, and as a result I sometimes forget what I have and default to wearing the same few items. This is frustrating because jewelry is meant to be expressive, yet I’m not making full use of it. On top of that, when I buy new pieces, I don’t have a quick way to reference my collection to avoid duplicates or to balance my styles. I imagine a “virtual jewelry shelf” where I could upload photos, tag the pieces (necklace, earrings, rings), note their storage location, and maybe even add information like materials or occasions when I wore them. This would give me both an organizational system and a source of inspiration when planning outfits. I think this domain is exciting because it’s very personal to me, but it also touches on a common problem for anyone who enjoys fashion or accessories—helping people rediscover and actually use the things they already love.
 
-### Concentration & Productivity Gamification
+#### Concentration & Productivity Gamification
 Focus is something I’m constantly chasing. I often feel that I spend more time thinking about how to stay productive than actually being productive. I’ve tried timers, to-do lists, and habit trackers, but they usually require too much manual input, which becomes another task I end up avoiding. What excites me is the idea of borrowing mechanics from video games—something I’m already motivated by—and applying them to daily work. For example, instead of just checking a box when I finish reading, I could gain “experience points” toward a character that levels up, or defeat a “boss” that represents procrastination. This approach reframes productivity from being a burden into something playful and rewarding. I can see it being especially useful for students and young adults like me, who are used to interactive feedback and want their progress to feel visible and meaningful. The potential here is broad because while the theme can be playful, the underlying value is serious: it helps people focus better and enjoy the process rather than dread it. But it is also important to keep everything simple.
 
 ---
 
-## Problem
+## Problems
 ### Domain 1: Anime
 1. **Cross-language sharing** – Hard to share anime recommendations across Chinese and English versions.
 2. **Watch history tracking** – Difficult to keep track of progress when juggling multiple shows.
