@@ -1,5 +1,4 @@
-# Assignment 1
-# Dianne Cao
+# Assignment 1 - Dianne Cao
 
 ## Ten Domains
 1. **Anime** – I enjoy watching anime and I think for the general community watching anime is part of their routine life. For me and my friends we often watch 3 to 10 episodes per week, but I never kept track of the animes I watched and its hard to share animes because I watch anime in Chinese but my friends in English.
