@@ -81,6 +81,8 @@ could benefit from better user retention if viewers had a unified way to track p
 They control the copy write & other problems that might be related when trying to make an app using their graphics.
 
 
+**Impact**
+Anime watchers are the most directly affected because without tracking, they waste time trying to remember their progress or risk rewatching the wrong episodes. Streaming platforms could benefit from improved user retention if viewers had better tracking tools, but they may also resist outside solutions since many platforms already have built-in watch-history functions. Anime producers are indirectly affected because this app may rely on copyrighted content like images or metadata, raising licensing and integration challenges.
 
 ---
 
@@ -94,6 +96,10 @@ Better tracking could either reduce impulse buying (negative for sales) or encou
 3. **Friends/peers** – People who might gift or borrow jewelry.
 Friends often discuss a certain piece of jewry in conversaion, and they are also affected by the taste and choices of the poeple around them.
 
+**Impact**
+Jewelry owners are directly impacted since forgetting what they already own leads to duplicate purchases or underusing pieces, reducing enjoyment of their collection. Retailers and designers might see reduced impulse buying if customers are more organized, but in the long run could benefit from more thoughtful, curated purchases and opportunities for targeted advertising. Friends and peers are affected socially, as conversations about style or gifting become easier when someone knows and can share their jewelry collection clearly.
+
+
 ---
 
 ### Problem 3: High-effort Logging (Productivity)
@@ -105,8 +111,10 @@ This is directly impacted because high-effort logging discourages them from stic
 They benefit indirectly: when individuals can focus better, their performance and contributions improve.
 
 3. **App developers** – Creators of productivity tools.
-Developers of currently existing productivity apps might come up with better ideas to organize and plan.e
+Developers of currently existing productivity apps might come up with better ideas to organize and plan.
 
+**Impact**
+Students and young professionals are directly affected because high-effort logging discourages them from sticking with existing productivity apps, leaving them frustrated and unmotivated. Employers and teachers benefit indirectly when individuals can focus better, since improved concentration translates into higher-quality work and contributions. App developers are also stakeholders: if current tools are seen as too time-consuming, developers risk poor adoption and must innovate with lower-friction features to retain users.
 
 ---
 
