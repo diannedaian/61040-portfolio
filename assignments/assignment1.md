@@ -187,7 +187,7 @@ Students and young professionals are directly affected because high-effort loggi
 [MagicTask](magictask.io) MagicTask uses a system where completing tasks earns points to unlock new themes and sound effects for the app interface. It even has leaderboards to compete with others or your team.
 Limitations: MagicTask’s game elements (themes, cosmetic rewards) might be less compelling
 
-[SuperBetter](https://superbetter.com/)An app created by game designer Jane McGonigal, SuperBetter takes a wellness-oriented approach to gamification. Rather than tracking every daily chore, it sets up “quests” and “power-ups” to build personal resilience and healthy habits.
+[SuperBetter](https://superbetter.com/) An app created by game designer Jane McGonigal, SuperBetter takes a wellness-oriented approach to gamification. Rather than tracking every daily chore, it sets up “quests” and “power-ups” to build personal resilience and healthy habits.
 Limitations: It’s less about traditional productivity/to-dos – so it might not help you track work tasks or study schedules in detail. Also, lacking a strong game theme might make it less immersive for some.
 
 [Jace AI - Your 24/7 AI Email Agent](https://jace.ai/) Jace AI is an intelligent assistant that drafts email replies in your voice, organizes your inbox, schedules meetings, and “calms chaos before you open your laptop”.[Email automation](https://medium.com/%40daneallist/meet-jace-ai-revolutionizing-autonomous-artificial-intelligence-agents-92fc4fa186c8).
@@ -217,7 +217,7 @@ An option to toggle between English, Chinese, or Japanese titles for every show 
 A photo-driven catalog where each piece of jewelry can be uploaded with images, tags, and metadata (material, type, style). Jewelry owners gain a clear visual overview, reducing duplicate purchases and helping rediscover forgotten items.
 
 **2. Location Tagging**
-Each entry includes a field to document where the jewelry is physically stored (drawer, box, case). This reduces the wasted time that owners and their peers experience when trying to find specific pieces, directly addressing the “lost item” problem.
+Each entry includes a field to document where the jewelry is physically stored (drawer, box, case). This reduces the wasted time that owners and their peers experience when trying to find specific pieces, directly addressing the frustration jewelry owners have with misplacing items.
 
 **3. Robust Search & Filter**
 A smart search that lets users find jewelry by type, occasion, or even color/material. This empowers owners to quickly assemble outfits, helps friends/peers see what might be borrowed, and gives retailers insights into usage patterns if connected to commerce.
