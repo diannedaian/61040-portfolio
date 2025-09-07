@@ -157,7 +157,7 @@ Students and young professionals are directly affected because high-effort loggi
 [Etsy Template](https://www.etsy.com/listing/1506814229/jewelry-collection-tracker-jewelry) Popular spreadsheet templates exist to track jewelry collections by count, value, and photos—evidence of demand, though manual entry makes them clunky.
 
 
-####Comparible
+#### Comparible
 [Whering](https://www.whering.co.uk/) A digital wardrobe app with 9M+ users that lets people upload photos of their clothes and accessories, track cost-per-wear, and plan outfits.
 **Limitations:** Not jewelry-specific, and bulk upload/setup can be tedious.
 
@@ -182,7 +182,7 @@ Students and young professionals are directly affected because high-effort loggi
 [Productivity Struggles](https://www.quora.com/Students-are-currently-facing-many-problems-like-less-productivity-depression-and-addiction-to-social-media-What-can-solve-these-problems-What-steps-can-we-take) Students are currently facing many problems like less productivity, depression, and addiction to social media.
 
 #### Comparibles
-[Habitica](habitica.com)The poster child of gamified habit trackers, Habitica “treats your real life like a game”. Users create an avatar, earn XP (experience points) and gold for completing tasks, and take damage for failing habits.Limitations: The RPG style can be too involved or gimmicky for some – if you’re not into the 8-bit fantasy aesthetic, the interface might feel cluttered. Also, as a general tool, Habitica might lack specialized features (for example, it’s less suited for team project management or detailed scheduling compared to dedicated apps).
+[Habitica](habitica.com) The poster child of gamified habit trackers, Habitica “treats your real life like a game”. Users create an avatar, earn XP (experience points) and gold for completing tasks, and take damage for failing habits.Limitations: The RPG style can be too involved or gimmicky for some – if you’re not into the 8-bit fantasy aesthetic, the interface might feel cluttered. Also, as a general tool, Habitica might lack specialized features (for example, it’s less suited for team project management or detailed scheduling compared to dedicated apps).
 
 [MagicTask](magictask.io) MagicTask uses a system where completing tasks earns points to unlock new themes and sound effects for the app interface. It even has leaderboards to compete with others or your team.
 Limitations: MagicTask’s game elements (themes, cosmetic rewards) might be less compelling
