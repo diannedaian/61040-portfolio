@@ -294,25 +294,25 @@ when authenticating, the user provides both their password and the current code;
 the server verifies the code against the secret and current time before granting access
 
 state
-a set of Users with
-  a username String
-  a passwordHash String
-  a totpSecret String (shared secret for generating/verifying codes)
-  a totpEnabled Flag
+  a set of Users with
+    a username String
+    a passwordHash String
+    a totpSecret String (shared secret for generating/verifying codes)
+    a totpEnabled Flag
 
 actions
-- enableTOTP(user: User): (secret: String)
-  - *requires* user exists, totpEnabled = false
-  - *effects* generate a new secret, assign it to user.totpSecret, set totpEnabled = true, return the secret (to be scanned/stored by the authenticator app)
+  enableTOTP(user: User): (secret: String)
+    requires user exists, totpEnabled = false
+    effects generate a new secret, assign it to user.totpSecret, set totpEnabled = true, return the secret (to be scanned/stored by the authenticator app)
 
-- disableTOTP(user: User)
-  - *requires* user exists, totpEnabled = true
-  - *effects* clear totpSecret, set totpEnabled = false
+  disableTOTP(user: User)
+    requires user exists, totpEnabled = true
+    effects clear totpSecret, set totpEnabled = false
 
-- authenticate(username: String, password: String, token: String): (user: User)
-  - *requires* user exists, password matches stored hash,
-    and if totpEnabled = true then token matches current TOTP code
-  - *effects* return the User if all checks succeed
+  authenticate(username: String, password: String, token: String): (user: User)
+    requires user exists, password matches stored hash,
+             and if totpEnabled = true then token matches current TOTP code
+    effects return the User if all checks succeed
 ```
 
 ### Notes
