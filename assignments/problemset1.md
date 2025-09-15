@@ -195,12 +195,12 @@ A clearer explanation would highlight:
 
 ```
 concept BillableHoursTracking
-**purpose** record employee work sessions by project so clients can be billed accurately
-**principle** an employee starts a work session by choosing a project and describing the task;
+purpose record employee work sessions by project so clients can be billed accurately
+principle an employee starts a work session by choosing a project and describing the task;
           the system records the start time;
           when the employee ends the session, the system records the end time and duration;
           each completed session is associated with the correct project for billing
-**state**
+state
   a set of Projects with
     an identifier ProjectID
 
@@ -214,7 +214,7 @@ concept BillableHoursTracking
     a startTime Timestamp
     an endTime Timestamp?   // optional until session is ended
     a duration Number?      // computed once ended
-**actions**
+actions
   startSession(employee: Employee, project: Project, description: String): (session: Session)
     requires employee and project exist,
              employee has no active session
@@ -247,12 +247,12 @@ concept BillableHoursTracking
 
 ```
 concept ConferenceRoomBooking
-**purpose** allow employees to reserve conference rooms for meetings without conflicts, with shared ownership
-**principle** a user creates a reservation for a room by selecting a time and location;
+purpose allow employees to reserve conference rooms for meetings without conflicts, with shared ownership
+principle a user creates a reservation for a room by selecting a time and location;
 owners of the reservation may later cancel it;
 reservations can also list additional owners who share control
 
-**state**
+state
 a set of Rooms with
   an identifier RoomID
 
@@ -267,7 +267,7 @@ a set of Bookings with
   an endTime Timestamp
   a description String
 
-**actions**
+actions
 - createBooking(primaryOwner: User, room: Room, startTime: Timestamp, endTime: Timestamp, description: String, additionalOwners: Set<User>): (booking: Booking)
   - *requires* room exists, startTime < endTime, and no existing Booking for that room overlaps [startTime, endTime)
   - *effects* create a new Booking with the given room, primaryOwner, additionalOwners, startTime, endTime, and description; return the Booking
@@ -287,20 +287,20 @@ a set of Bookings with
 
 ```
 concept TimeBasedOneTimePassword
-**purpose** improve account security by requiring a short-lived, time-based token from a user's trusted device in addition to their password
-**principle** after registering a TOTP secret with an authentication server and a trusted device (e.g., a phone app),
+purpose improve account security by requiring a short-lived, time-based token from a user's trusted device in addition to their password
+principle after registering a TOTP secret with an authentication server and a trusted device (e.g., a phone app),
 the device can generate numeric codes that change every fixed time interval (e.g., 30 seconds);
 when authenticating, the user provides both their password and the current code;
 the server verifies the code against the secret and current time before granting access
 
-**state**
+state
 a set of Users with
   a username String
   a passwordHash String
   a totpSecret String (shared secret for generating/verifying codes)
   a totpEnabled Flag
 
-**actions**
+actions
 - enableTOTP(user: User): (secret: String)
   - *requires* user exists, totpEnabled = false
   - *effects* generate a new secret, assign it to user.totpSecret, set totpEnabled = true, return the secret (to be scanned/stored by the authenticator app)
