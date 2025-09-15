@@ -34,7 +34,7 @@ A simple fix is to not allow an item to be removed if any purchases have already
 ### 3. Inferring behavior
 
 A registry **can be opened and closed repeatedly**. The `open` action only requires that the registry exists and is not already active, and the `close` action only requires that it exists and is active. There is no restriction in the spec that prevents an owner from calling `open` again after a `close`.
-It should be flexible because maybe the user decided to close it and then regrets and wants to sent it to more people, then if the close is perminant the registry can't be used anymore. Also the user might want to reused stuff.
+It should be flexible because maybe the user decided to close it and then regrets and wants to sent it to more people, then if the close is permanent the registry can't be used anymore. Also the user might want to reused stuff.
 
 ### 4. Registry Deletion
 
@@ -195,7 +195,7 @@ A clearer explanation would highlight:
 ### Billable Hours Tracking
 
 ```
-**concept** BillableHoursTracking
+concept BillableHoursTracking
 **purpose** record employee work sessions by project so clients can be billed accurately
 **principle** an employee starts a work session by choosing a project and describing the task;
           the system records the start time;
@@ -247,7 +247,7 @@ A clearer explanation would highlight:
 ### Conference Room Booking
 
 ```
-**concept** ConferenceRoomBooking
+concept ConferenceRoomBooking
 **purpose** allow employees to reserve conference rooms for meetings without conflicts, with shared ownership
 **principle** a user creates a reservation for a room by selecting a time and location;
 owners of the reservation may later cancel it;
@@ -287,7 +287,7 @@ a set of Bookings with
 ### Time-Based One-Time Password (TOTP)
 
 ```
-**concept** TimeBasedOneTimePassword
+concept TimeBasedOneTimePassword
 **purpose** improve account security by requiring a short-lived, time-based token from a user's trusted device in addition to their password
 **principle** after registering a TOTP secret with an authentication server and a trusted device (e.g., a phone app),
 the device can generate numeric codes that change every fixed time interval (e.g., 30 seconds);
@@ -312,7 +312,7 @@ a set of Users with
 
 - authenticate(username: String, password: String, token: String): (user: User)
   - *requires* user exists, password matches stored hash,
-    and if totpEnabled = true then token matches the code generated from totpSecret at current time
+    and if totpEnabled = true then token matches current TOTP code
   - *effects* return the User if all checks succeed
 ```
 
