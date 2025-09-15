@@ -248,16 +248,14 @@ A clearer explanation would highlight:
 
 ```
 **concept** ConferenceRoomBooking
-**purpose** allow employees to reserve conference rooms for meetings without conflicts, with shared ownership and editing rights
+**purpose** allow employees to reserve conference rooms for meetings without conflicts, with shared ownership
 **principle** a user creates a reservation for a room by selecting a time and location;
-owners of the reservation may later edit or delete it;
-reservations can also list additional owners who share control;
-users can view their own reservations in a calendar or list format
+owners of the reservation may later cancel it;
+reservations can also list additional owners who share control
 
 **state**
 a set of Rooms with
   an identifier RoomID
-  a capacity Number
 
 a set of Users with
   an identifier UserID
@@ -275,26 +273,16 @@ a set of Bookings with
   - *requires* room exists, startTime < endTime, and no existing Booking for that room overlaps [startTime, endTime)
   - *effects* create a new Booking with the given room, primaryOwner, additionalOwners, startTime, endTime, and description; return the Booking
 
-- editBooking(actor: User, booking: Booking, newRoom: Room?, newStartTime: Timestamp?, newEndTime: Timestamp?, newDescription: String?, newAdditionalOwners: Set<User>?)
-  - *requires* booking exists, actor is either the primaryOwner or in additionalOwners, and new times do not conflict with existing bookings for the new room
-  - *effects* update the booking's details with any provided new values
-
 - cancelBooking(actor: User, booking: Booking)
   - *requires* booking exists, actor is the primaryOwner or in additionalOwners
   - *effects* remove the booking from the set of Bookings
-
-- viewMyBookings(user: User, viewMode: String): (bookings: Set<Booking>)
-  - *requires* user exists, viewMode in {calendar, list}
-  - *effects* return all bookings where the user is the primaryOwner or an additionalOwner, displayed in the selected view
 ```
 
 ### Notes
 
-- **Multiple owners:** Each booking has one primary owner and may include additional owners, all of whom can edit or delete the booking. (This aligns with CSAIL's booking)
-- **Editing:** Owners can change the time, room, description, or owners of a booking, but edits must not conflict with other existing bookings.
-- **Deleting:** Owners can fully delete a booking, with confirmation dialogs handled in the UI.
-- **Viewing:** `viewMyBookings` lets users see all bookings they own (as primary or additional owners) in either calendar or list format. The actual display is outside the concept, but the query is part of the spec.
-- **Consistency:** Only owners (primary or additional) can change or delete a booking, ensuring clear control without opening access to everyone.
+- **Multiple owners:** Each booking has one primary owner and may include additional owners, all of whom can cancel the booking. (This aligns with CSAIL's booking)
+- **Canceling:** Owners can fully cancel a booking, with confirmation dialogs handled in the UI.
+- **Consistency:** Only owners (primary or additional) can cancel a booking, ensuring clear control without opening access to everyone.
 
 ### Time-Based One-Time Password (TOTP)
 
