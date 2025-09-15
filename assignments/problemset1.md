@@ -70,7 +70,7 @@ This approach preserves flexibility: the giver’s purchase is always recorded, 
 
 ### 7. Generic Types
 
-It is preferable to use SKU code because it keeps the concept simple and focused on tracking gifts rather than managing product catalogs, allows different stores to plug in their own item systems, and ensures stability if product details change over time—the identifier still points to the same item. It also allow fast look up and we don't need to match word by word. 
+It is preferable to use SKU code because it keeps the concept simple and focused on tracking gifts rather than managing product catalogs, allows different stores to plug in their own item systems, and ensures stability if product details change over time—the identifier still points to the same item. It also allow fast look up and we don't need to match word by word.
 If items were represented by names, descriptions, or prices, the registry could become inconsistent or confusing if something changes, also they might not be in the same format as some might not have all information.
 
 ## Exercise 2
@@ -148,19 +148,19 @@ actions
 
 ```
 concept PersonalAccessToken
-**purpose** provide an alternative to passwords for authenticating a user, especially when accessing GitHub from the command line or via API
-**principle** a user creates a token (an obscure string) with optional scopes or permissions;
+purpose provide an alternative to passwords for authenticating a user, especially when accessing GitHub from the command line or via API
+principle a user creates a token (an obscure string) with optional scopes or permissions;
           the token is stored securely by the user;
           when the token is presented along with the username,
           the user is authenticated as themselves,
           with access limited to what the token's scopes allow
-**state**
+state
   a set of Tokens with
     an owner User
     a secret String
     a set of scopes Permissions
     an active Flag
-**actions**
+actions
   createToken(owner: User, scopes: Permissions): (token: Token)
     requires owner exists
     effects create a new Token for this owner with given scopes, active=true,
