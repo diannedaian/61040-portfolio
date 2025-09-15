@@ -11,8 +11,7 @@ Two invariants are:
 2. Purchases require requests. Every purchase must belong to an existing request in a registry. In other words, you can’t buy an item unless the recipient asked for it and it appears on their registry.
 
 The more important invariant is **(1) count consistency**, because it guarantees the registry accurately reflects what’s still available for givers.
-
-- The goal of the gifting platform is to not get duplicate gifts and if there is a mess up at the count consistency it undermines the goal
+The goal of the gifting platform is to not get duplicate gifts and if there is a mess up at the count consistency it undermines the goal
 
 The action most affected is **`purchase`**. Because it preserves the invariant by requiring the count is available and then decrementing the request count while recording the purchase.
 
@@ -38,7 +37,7 @@ It should be flexible because maybe the user decided to close it and then regret
 
 ### 4. Registry Deletion
 
-In practice this probably won't matter, since closing the registry already hides it from givers and preserves purchase history for the recipient. Still, some users may want deletion for tidiness, so an “archive” option could be a practical compromise.
+In practice this won't matter funtion wise, since closing the registry already hides it from givers and preserves purchase history for the recipient. Still, deleting will allow us to save space from the database and also give user power to clean up their registry.
 
 ### 5. Queries
 
@@ -71,7 +70,7 @@ This approach preserves flexibility: the giver’s purchase is always recorded, 
 
 ### 7. Generic Types
 
-It is preferable to use SKU code because it keeps the concept simple and focused on tracking gifts rather than managing product catalogs, allows different stores to plug in their own item systems, and ensures stability if product details change over time—the identifier still points to the same item.
+It is preferable to use SKU code because it keeps the concept simple and focused on tracking gifts rather than managing product catalogs, allows different stores to plug in their own item systems, and ensures stability if product details change over time—the identifier still points to the same item. It also allow fast look up and we don't need to match word by word. 
 If items were represented by names, descriptions, or prices, the registry could become inconsistent or confusing if something changes, also they might not be in the same format as some might not have all information.
 
 ## Exercise 2
