@@ -37,15 +37,17 @@ A registry **can be opened and closed repeatedly**. The `open` action only requi
 It should be flexible because maybe the user decided to close it and then regrets and wants to sent it to more people, then if the close is perminant the registry can't be used anymore. Also the user might want to reused stuff.
 
 ### 4. Registry Deletion
+
 In practice this probably won't matter, since closing the registry already hides it from givers and preserves purchase history for the recipient. Still, some users may want deletion for tidiness, so an “archive” option could be a practical compromise.
 
 ### 5. Queries
 
 Two common queries are:
-1. **By the registry owner:** *“Which items have been purchased, and by whom?”*
+
+1. **By the registry owner:** _“Which items have been purchased, and by whom?”_
    This helps the recipient track what gifts they will receive and send thank-you notes.
 
-2. **By a gift giver:** *“Which items are still available to purchase, and how many are left?”*
+2. **By a gift giver:** _“Which items are still available to purchase, and how many are left?”_
    This ensures givers can avoid duplicates and choose from the remaining options.
 
 ### 6. Hiding purchases
@@ -53,12 +55,13 @@ Two common queries are:
 A common feature of gift registries is letting the recipient hide purchase information so that the gifts remain a surprise. To support this, the concept specification could be augmented with:
 
 - **New state:** add a flag on each `Registry`, e.g. `hidePurchases: Boolean`.
-When set to `true`, purchase details are hidden from the recipient.
+  When set to `true`, purchase details are hidden from the recipient.
 
 - **New action:**
+
   - `setHidePurchases(registry: Registry, flag: Boolean)`
-  - *Requires:* registry exists.
-  - *Effects:* update the `hidePurchases` setting.
+  - _Requires:_ registry exists.
+  - _Effects:_ update the `hidePurchases` setting.
 
 - **Query behavior:**
   - If `hidePurchases = true`, recipient queries for purchase details return only item counts (or nothing at all), not purchaser identities.
@@ -67,17 +70,24 @@ When set to `true`, purchase details are hidden from the recipient.
 This approach preserves flexibility: the giver’s purchase is always recorded, but visibility is controlled by the recipient.
 
 ### 7. Generic Types
+
 It is preferable to use SKU code because it keeps the concept simple and focused on tracking gifts rather than managing product catalogs, allows different stores to plug in their own item systems, and ensures stability if product details change over time—the identifier still points to the same item.
 If items were represented by names, descriptions, or prices, the registry could become inconsistent or confusing if something changes, also they might not be in the same format as some might not have all information.
 
 ## Exercise 2
+
 ### Q1
+
+```
 state
   a set of Users with
     a username String
     a passwordHash String
+```
 
 ### Q2
+
+```
 actions
   register(username: String, password: String): (user: User)
     requires no existing User has this username
@@ -88,16 +98,21 @@ actions
     requires a User with this username exists,
              and the stored passwordHash matches the given password
     effects return the matching User
+```
 
 ### Q3
+
 **Invariant:**
 Every `username` in the set of Users must be unique — no two Users can share the same username.
 
 **How it is preserved:**
+
 - The `register` action enforces uniqueness by requiring that no existing User already has the chosen username before creating a new one.
 - The `authenticate` action does not modify the state at all, so it cannot break the invariant.
 
 ### Q4
+
+```
 state
   a set of Users with
     a username String
@@ -118,7 +133,7 @@ actions
 
   confirm(username: String, token: String)
     requires a PendingConfirmation exists with this username and token
-    effects mark the User’s confirmed flag as true,
+    effects mark the User's confirmed flag as true,
             remove the PendingConfirmation for this username
 
   authenticate(username: String, password: String): (user: User)
@@ -126,17 +141,20 @@ actions
              the stored passwordHash matches the hash of the given password,
              and confirmed = true
     effects return the matching User
+```
 
 ## Exercise 3
+
 ### Concept: PersonalAccessToken
 
+```
 concept PersonalAccessToken
 **purpose** provide an alternative to passwords for authenticating a user, especially when accessing GitHub from the command line or via API
 **principle** a user creates a token (an obscure string) with optional scopes or permissions;
           the token is stored securely by the user;
           when the token is presented along with the username,
           the user is authenticated as themselves,
-          with access limited to what the token’s scopes allow
+          with access limited to what the token's scopes allow
 **state**
   a set of Tokens with
     an owner User
@@ -157,6 +175,7 @@ concept PersonalAccessToken
     requires a User with this username exists,
              there is an active Token for this user with secret=token
     effects return the User with the permissions granted by that token
+```
 
 ### Comparison: Passwords vs. Personal Access Tokens
 
@@ -172,8 +191,10 @@ A clearer explanation would highlight:
 - Tokens can be revoked individually without changing your main password.
 
 ## Exercise 4
+
 ### Billable Hours Tracking
 
+```
 **concept** BillableHoursTracking
 **purpose** record employee work sessions by project so clients can be billed accurately
 **principle** an employee starts a work session by choosing a project and describing the task;
@@ -212,18 +233,20 @@ A clearer explanation would highlight:
     effects for any Session with endTime = null and startTime too far in the past,
             set endTime = currentTime,
             compute duration = endTime - startTime
-
+```
 
 ---
 
 ### Notes
+
 - **Forgotten sessions:** The `autoEndSessions` action handles cases where an employee forgets to end a session. The policy for “too far in the past” could be defined as the end of the workday, or after a set maximum duration.
 - **Multiple active sessions:** The `startSession` action requires that an employee cannot have more than one active session at once, ensuring consistency.
 - **Duration calculation:** Keeping `duration` explicit in state avoids recomputation and simplifies billing queries.
 - **Extensibility:** The concept could be extended later to allow editing or annotating sessions, but the core design covers the minimal billable-hours workflow.
 
-
 ### Conference Room Booking
+
+```
 **concept** ConferenceRoomBooking
 **purpose** allow employees to reserve conference rooms for meetings without conflicts, with shared ownership and editing rights
 **principle** a user creates a reservation for a room by selecting a time and location;
@@ -254,7 +277,7 @@ a set of Bookings with
 
 - editBooking(actor: User, booking: Booking, newRoom: Room?, newStartTime: Timestamp?, newEndTime: Timestamp?, newDescription: String?, newAdditionalOwners: Set<User>?)
   - *requires* booking exists, actor is either the primaryOwner or in additionalOwners, and new times do not conflict with existing bookings for the new room
-  - *effects* update the booking’s details with any provided new values
+  - *effects* update the booking's details with any provided new values
 
 - cancelBooking(actor: User, booking: Booking)
   - *requires* booking exists, actor is the primaryOwner or in additionalOwners
@@ -263,8 +286,10 @@ a set of Bookings with
 - viewMyBookings(user: User, viewMode: String): (bookings: Set<Booking>)
   - *requires* user exists, viewMode in {calendar, list}
   - *effects* return all bookings where the user is the primaryOwner or an additionalOwner, displayed in the selected view
+```
 
 ### Notes
+
 - **Multiple owners:** Each booking has one primary owner and may include additional owners, all of whom can edit or delete the booking. (This aligns with CSAIL's booking)
 - **Editing:** Owners can change the time, room, description, or owners of a booking, but edits must not conflict with other existing bookings.
 - **Deleting:** Owners can fully delete a booking, with confirmation dialogs handled in the UI.
@@ -273,8 +298,9 @@ a set of Bookings with
 
 ### Time-Based One-Time Password (TOTP)
 
+```
 **concept** TimeBasedOneTimePassword
-**purpose** improve account security by requiring a short-lived, time-based token from a user’s trusted device in addition to their password
+**purpose** improve account security by requiring a short-lived, time-based token from a user's trusted device in addition to their password
 **principle** after registering a TOTP secret with an authentication server and a trusted device (e.g., a phone app),
 the device can generate numeric codes that change every fixed time interval (e.g., 30 seconds);
 when authenticating, the user provides both their password and the current code;
@@ -300,16 +326,19 @@ a set of Users with
   - *requires* user exists, password matches stored hash,
     and if totpEnabled = true then token matches the code generated from totpSecret at current time
   - *effects* return the User if all checks succeed
+```
 
 ### Notes
+
 - **Purpose and improvement:**
-  TOTP adds a second factor — *something you have* (the phone generating codes) — on top of *something you know* (the password). This means that even if a password is stolen, an attacker still cannot log in without also having access to the user’s device.
+  TOTP adds a second factor — _something you have_ (the phone generating codes) — on top of _something you know_ (the password). This means that even if a password is stolen, an attacker still cannot log in without also having access to the user’s device.
 
 - **Improved security:**
+
   - Protects against password reuse attacks (if one site leaks your password, an attacker cannot reuse it elsewhere without your device).
   - Protects against brute-force and credential stuffing attacks.
   - Limits damage of intercepted passwords since codes expire quickly.
 
 - **Remaining vulnerabilities:**
   - Phishing sites can trick a user into typing in both their password and a valid current TOTP code.
-  - If your phone is stolen and your password is saved on your phone the generated code will also be taken 
+  - If your phone is stolen and your password is saved on your phone the generated code will also be taken
