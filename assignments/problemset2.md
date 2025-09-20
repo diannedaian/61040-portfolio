@@ -4,7 +4,7 @@
 
 ### 1. Context
 
-Contexts in NonceGeneration are namespaces that scope where uniqueness must be preserved. In the URL shortening app, the natural context is the short URL base (domain), so that each domain maintains its own pool of unique suffixes. For example, given `tinyurl.com/abc` and `myshort.ly/abc`, they should be able to coexist within the same base.
+Contexts in NonceGeneration are namespaces that scope where uniqueness must be preserved. In the URL shortening app, the natural context is the short URL base (domain), so that each domain maintains its own pool of unique suffixes. For example, given `tinyurl.com/abc` and `myshort.ly/abc`, they can co-exist because they’re in different bases.
 
 ### 2. Storing used strings
 
@@ -120,32 +120,28 @@ then AccessLogging.recordAccess (shortUrl)
 
 ```
 sync provideReport
-when AccessReporting.reportAccess (owner, shortUrl), AccessLogging.getCount (shortUrl): (count)
+when Request.viewAnalytics (owner, shortUrl), AccessLogging.getCount (shortUrl): (count)
 then AccessReporting.reportAccess (owner, shortUrl): (count)
 ```
 
 - Sync 1 ensures that whenever a new shortening is registered, an analytics log is created and ownership is recorded for the user.
 - Sync 2 increments the access counter whenever the short URL is translated to its target.
-- Sync 3 connects the reporting action with the logged counts so that the owner can view usage analytics.
+- Sync 3's when gathers (a) the user’s request and (b) the completion of getCount; the then invokes the reporting action and fulfills its return with the bound count
 
 ### 3.
+If authentication is enabled, the request must carry an authenticated user; add a sync from PasswordAuthentication.authenticate so ownership/permissions are bound to that identity.
 
 #### 1. Allowing users to choose their own short URLs
-
-This can be done by adding a new action `registerCustom` in the `UrlShortening` concept. It would require that the chosen suffix is not already in use, and would sync to analytics concepts just like auto-generated URLs.
+This feature requires adding a new action `registerCustom` to the `UrlShortening` concept that accepts a user-specified suffix. The action must check that no existing shortening with the same `(base, suffix)` exists, preserving the invariant. To integrate with the rest of the system, a sync from `Request.shortenUrl` would trigger `UrlShortening.registerCustom`, and further syncs would still create analytics logs (`AccessLogging.createLog`) and ownership records (`AccessReporting.recordOwnership`). If authentication is required, the request would need to carry an authenticated user identity to bind the ownership correctly.
 
 #### 2. Using the “word as nonce” strategy
-
-Extend the `NonceGeneration` concept to support an alternative action `generateWordNonce` that draws from a dictionary pool. The invariant ensures no word is reused within a context, and a sync selects this strategy when desired.
+To support dictionary-based suffixes, the `NonceGeneration` concept can be extended with an action like `generateWordNonce(context)`. The invariant that nonces are unique within a context still holds, but now the pool is finite, so collisions will be more likely. A sync would be needed to invoke this strategy when a user requests a “memorable” shortening. However, since the system already supports `registerCustom`, this feature is partially redundant: advanced users can pick their own memorable suffixes. The main benefit is to offer friendlier defaults for users who don’t specify, but it comes with trade-offs in scalability and guessability.
 
 #### 3. Including the target URL in analytics
-
-Add the target URL to the state of `AccessLogging`, or create a new `TargetAnalytics` concept keyed by target URL. A sync from `UrlShortening.register` initializes the mapping, and `UrlShortening.lookup` increments both short URL and target URL counts.
+Right now, analytics are tied to short URLs only. To group lookups across different short URLs pointing to the same target, we could either (a) add the `targetUrl` into the state of `AccessLogging`, or (b) define a new concept `TargetAnalytics` keyed by `targetUrl`. In both designs, synchronizations must be added: when `UrlShortening.register` completes, initialize a target-level log entry; and when `UrlShortening.lookup` completes, increment both the per-shortening log and the target-level log. This way, an owner can view traffic grouped by either the short link or the underlying target.
 
 #### 4. Generate short URLs that are not easily guessed
-
-Modify the implementation of `NonceGeneration` to use cryptographically strong random strings instead of sequential or dictionary-based nonces. This maintains uniqueness while improving security against guessing attacks. This is a bit conflicting with feature 2, maybe there will be a use case scenerio where this is required compared to a generated word.
+To improve security, the `NonceGeneration` concept could switch from sequential counters to cryptographically strong random nonces. This still satisfies the uniqueness invariant but makes URLs much harder to guess. Synchronizations would not need to change, since the caller doesn’t depend on how the nonce is generated. This feature somewhat conflicts with the “word as nonce” strategy: one prioritizes usability, the other security. A practical design could offer both, letting the user or service operator choose between random and word-based generation depending on the use case.
 
 #### 5. Reporting analytics to creators without registration
-
-This feature is not nessasery since it weakens accountability and risks exposing analytics to unauthorized users.
+Providing analytics to non-registered users is not nessasary because it undermines accountability and risks leaking data.
