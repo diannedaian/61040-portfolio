@@ -1,4 +1,4 @@
-# Pset 1 - Dianne Cao
+# Pset 2 - Dianne Cao
 
 ## Concept Questions
 
