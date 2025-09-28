@@ -2,7 +2,7 @@
 
 ## Problem Domain: Anime Viewing and Social Sharing
 
-Anime has become a significant part of my weekly routine and social identity. I watch 3-10 episodes per week with friends, and anime discussions are central to how I connect with my social circle. This domain matters to me because anime isn't just entertainment—it's part of my identity and how I bond with others. The challenge isn't just watching shows, but managing my viewing experience across multiple platforms and languages while maintaining social connections with friends who may watch in different languages or on different streaming services.
+Anime has become a significant part of my weekly routine and social identity. I watch 3-10 episodes per week with friends, and anime discussions are central to how I connect with my social circle. This domain matters to me because anime isn't just entertainment—it's part of my identity and how I bond with others. The challenge isn't just watching shows, but managing my viewing experience across multiple platforms and languages while maintaining social connections with friends and talk about anime and share their personal taste.
 
 ## Problem: Inefficient Anime List Management and Poor User Experience
 
@@ -64,7 +64,7 @@ Current anime tracking platforms make it difficult to maintain an accurate recor
 
 ## Concept Design
 
-### Concept1: "Beli"Rating
+### Concept 1: "Beli"Rating
 
 ```
 concept BeliRating [User, Anime]
@@ -105,7 +105,7 @@ actions
     and comparisons
 ```
 
-### Concept2: ImportSupport
+### Concept 2: ImportSupport
 
 ```
 concept ImportSupport [User, Anime]
@@ -147,7 +147,7 @@ actions
             and propagate scores into BeliRating as initial ratings
 ```
 
-### Recommendation Swipe
+### Concept 3: Recommendation Swipe
 
 ```
 concept RecommendationSwipe [User, Anime]
@@ -186,6 +186,57 @@ actions
   swipeToWatch (user: User, anime: Anime)
     requires anime has been recommended to user
     effects add anime to user’s watchlist with status = toWatch
+```
+### Concept 4: Seasonal Tracking
+```
+concept SeasonalTracking [User, Anime, Episode]
+
+purpose
+manage a user's progress on ongoing (seasonal) anime releases
+and provide the mechanism for issuing notifications when new
+episodes are available.
+
+principle
+users subscribe to anime titles they wish to follow. the system
+maintains a global list of released episodes and tracks each user’s
+highest watched episode for each subscribed anime. this allows
+for easy tracking of unwatched content.
+
+state
+a set of Subscriptions with
+a user User
+an anime Anime
+a status Status     // {following, completed, dropped}
+
+a set of Progress with
+a user User
+an anime Anime
+a lastWatchedEpisode Episode  // the highest episode number watched by the user
+
+a set of Releases with
+an anime Anime
+an episode Episode            // the episode number
+a releaseTime Time            // the actual time the episode became available
+
+actions
+subscribe (user: User, anime: Anime)
+requires user is not already subscribed to this anime
+effects adds a Subscription for the (user, anime) with status = following
+
+markWatched (user: User, anime: Anime, episode: Episode)
+requires user has an active Subscription for this anime
+effects updates the Progress of (user, anime) to the given episode
+only if the given episode is greater than the current lastWatchedEpisode
+
+recordRelease (anime: Anime, episode: Episode, time: Time)
+requires no Release currently exists for this (anime, episode)
+effects records a new episode release in Releases and triggers the
+system-level signal for notification syncs.
+
+getUnwatchedCount (user: User, anime: Anime) : (count: Number)
+requires user has an active Subscription
+effects returns the number of released episodes greater than the user's
+lastWatchedEpisode
 ```
 
 ## Essential Synchronizations
