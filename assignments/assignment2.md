@@ -269,6 +269,11 @@ _The seasonal anime tracking interface that shows weekly episodes and provides n
 ![Import/Export](AssignmentImgs/Export.png)
 _The import interface that allows users to seamlessly migrate their MyAnimeList data to AnimeShelf while preserving their complete viewing history._
 
+### Color Palette
+
+![Color Palette](AssignmentImgs/colorpallete.png)
+_The color palette used throughout AnimeShelf, designed to create a modern, clean interface that's easy on the eyes during extended anime tracking sessions with cute pink_
+
 ---
 
 ## User Journey
