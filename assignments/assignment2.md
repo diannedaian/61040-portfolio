@@ -16,7 +16,7 @@ Current anime tracking platforms make it difficult to maintain an accurate recor
 
 3. **Seasonal anime enthusiasts** – Viewers who follow new seasonal releases. They are impacted by poor seasonal anime updates and introductions on tracking platforms, missing out on discovering and tracking new content as it becomes available.
 
-4. **Anime tracking platform developers** – Creators of existing tracking services who face user retention challenges due to poor UI/UX and high maintenance requirements. They need to innovate to reduce user effort and improve interface design.
+4. **Content creators** – YouTubers, Bilibili creators, and other anime content creators who need systematic ways to share and recommend anime they watch. They are affected by the lack of organized tracking systems that would help them curate content, maintain consistent recommendations, and engage with their audiences about specific anime titles across different platforms and languages.
 
 ## Evidence and Comparables
 
