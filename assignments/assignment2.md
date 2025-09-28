@@ -1,8 +1,8 @@
-# Assignment 2 - Problem Statement
+# Assignment 2 - Dianne Cao
 
 ## Problem Domain: Anime Viewing and Social Sharing
 
-Anime has become a significant part of my weekly routine and social identity. I watch 3-10 episodes per week with friends, and anime discussions are central to how I connect with my social circle. This domain matters to me because anime isn't just entertainment—it's part of my identity and how I bond with others. The challenge isn't just watching shows, but managing my viewing experience across multiple platforms and languages while maintaining social connections with friends and talk about anime and share their personal taste.
+Anime has become a significant part of many enjoyers weekly routine and social identity. People watch 3-10 episodes per week with friends, and anime discussions are central to how they connect with my social circle. This domain matters to people because anime isn't just entertainment—it's part of their identity and how they bond with others. The challenge isn't just watching shows, but managing enjoyer's viewing experience across multiple platforms and languages while maintaining social connections with friends and talk about anime and share their personal taste.
 
 ## Problem: Inefficient Anime List Management and Poor User Experience
 
@@ -187,7 +187,9 @@ actions
     requires anime has been recommended to user
     effects add anime to user’s watchlist with status = toWatch
 ```
+
 ### Concept 4: Seasonal Tracking
+
 ```
 concept SeasonalTracking [User, Anime, Episode]
 
